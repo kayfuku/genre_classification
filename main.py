@@ -1,7 +1,7 @@
 import mlflow
 import os
 import hydra
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import ListConfig, DictConfig, OmegaConf
 
 
 # This automatically reads in the configuration
@@ -15,12 +15,15 @@ def go(config: DictConfig):
     # You can get the path at the root of the MLflow project with this:
     root_path = hydra.utils.get_original_cwd()
 
+    print('execute_steps:', config["main"]["execute_steps"])
+    print('type:', type(config["main"]["execute_steps"]))
+
     # Check which steps we need to execute. This is useful for debugging.
     if isinstance(config["main"]["execute_steps"], str):
         # This was passed on the command line as a comma-separated list of steps
         steps_to_execute = config["main"]["execute_steps"].split(",")
     else:
-        assert isinstance(config["main"]["execute_steps"], list)
+        assert isinstance(config["main"]["execute_steps"], ListConfig)
         steps_to_execute = config["main"]["execute_steps"]
 
     # Download step
