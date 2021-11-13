@@ -59,14 +59,16 @@ def go(args):
     pred_proba = pipe.predict_proba(X_val[used_columns])
 
     logger.info("Scoring")
-    score = roc_auc_score(y_val, pred_proba, average="macro", multi_class="ovo")
+    score = roc_auc_score(
+        y_val, pred_proba, average="macro", multi_class="ovo")
 
     run.summary["AUC"] = score
 
     # Export if required
     if args.export_artifact != "null":
 
-        export_model(run, pipe, used_columns, X_val, pred, args.export_artifact)
+        export_model(run, pipe, used_columns, X_val,
+                     pred, args.export_artifact)
 
     # Some useful plots
     fig_feat_imp = plot_feature_importance(pipe)
@@ -134,12 +136,16 @@ def plot_feature_importance(pipe):
     feat_imp = pipe["classifier"].feature_importances_[: len(feat_names)]
     # For the NLP feature we sum across all the TF-IDF dimensions into a global
     # NLP importance
-    nlp_importance = sum(pipe["classifier"].feature_importances_[len(feat_names) :])
+    nlp_importance = sum(
+        pipe["classifier"].feature_importances_[len(feat_names):])
     feat_imp = np.append(feat_imp, nlp_importance)
     feat_names = np.append(feat_names, "title + song_name")
     fig_feat_imp, sub_feat_imp = plt.subplots(figsize=(10, 10))
     idx = np.argsort(feat_imp)[::-1]
-    sub_feat_imp.bar(range(feat_imp.shape[0]), feat_imp[idx], color="r", align="center")
+    sub_feat_imp.bar(
+        range(feat_imp.shape[0]),
+        feat_imp[idx],
+        color="r", align="center")
     _ = sub_feat_imp.set_xticks(range(feat_imp.shape[0]))
     _ = sub_feat_imp.set_xticklabels(feat_names[idx], rotation=90)
     fig_feat_imp.tight_layout()
@@ -148,7 +154,7 @@ def plot_feature_importance(pipe):
 
 def get_training_inference_pipeline(args):
 
-    # Get the configuration for the pipeline
+    # Get the configuration (dictionary from yaml) for the pipeline
     with open(args.model_config) as fp:
         model_config = yaml.safe_load(fp)
     # Add it to the W&B configuration so the values for the hyperparams
@@ -193,7 +199,8 @@ def get_training_inference_pipeline(args):
     )
 
     # Get a list of the columns we used
-    used_columns = list(itertools.chain.from_iterable([x[2] for x in preprocessor.transformers]))
+    used_columns = list(itertools.chain.from_iterable(
+        [x[2] for x in preprocessor.transformers]))
 
     # Append classifier to preprocessing pipeline.
     # Now we have a full prediction pipeline.
@@ -220,19 +227,14 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--model_config",
-        type=str,
+        "--model_config", type=str,
         help="Path to a YAML file containing the configuration for the random forest",
-        required=True,
-    )
+        required=True,)
 
     parser.add_argument(
-        "--export_artifact",
-        type=str,
+        "--export_artifact", type=str,
         help="Name of the artifact for the exported model. Use 'null' for no export.",
-        required=False,
-        default="null",
-    )
+        required=False, default="null",)
 
     parser.add_argument(
         "--random_seed",
