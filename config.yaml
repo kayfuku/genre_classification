@@ -14,6 +14,8 @@ main:
   random_seed: 42
 data:
   file_url: "https://github.com/udacity/nd0821-c2-build-model-workflow-exercises/blob/master/lesson-2-data-exploration-and-preparation/exercises/exercise_4/starter/genres_mod.parquet?raw=true"
+  # You can use other tags here instead of 'latest' to check if
+  # "NEW" data is similar to "OLDER" data in terms of distribution, boundaries, schema, etc.
   reference_dataset: "exercise_14/preprocessed_data.csv:latest"
   # Threshold for Kolomorov-Smirnov test
   ks_alpha: 0.05
@@ -25,12 +27,12 @@ data:
 random_forest_pipeline:
   random_forest:
     n_estimators: 100
-    criterion: 'gini'
+    criterion: "gini"
     max_depth: 13
     min_samples_split: 2
     min_samples_leaf: 1
     min_weight_fraction_leaf: 0.0
-    max_features: 'auto'
+    max_features: "auto"
     max_leaf_nodes: null
     min_impurity_decrease: 0.0
     min_impurity_split: null
