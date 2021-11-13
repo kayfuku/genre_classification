@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/kei/Documents/Data_Science/ML_DevOps_Engineer/3_Modeling_Workflow/lesson5_training_validation_and_experiment_tracking/genre_classification/mlruns/0/651d52fb159747a7aad53437b34a85cb/artifacts
+end_time: 1636786084404
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 651d52fb159747a7aad53437b34a85cb
+run_uuid: 651d52fb159747a7aad53437b34a85cb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1636786066557
+status: 3
+tags: []
+user_id: kei

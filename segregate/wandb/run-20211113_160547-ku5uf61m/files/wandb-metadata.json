@@ -1,0 +1,35 @@
+{
+    "os": "macOS-11.2.3-x86_64-i386-64bit",
+    "python": "3.9.7",
+    "heartbeatAt": "2021-11-13T07:05:49.366032",
+    "startedAt": "2021-11-13T07:05:47.873232",
+    "docker": null,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [
+        "--input_artifact",
+        "preprocessed_data.csv:latest",
+        "--artifact_root",
+        "data",
+        "--artifact_type",
+        "segregated_data",
+        "--test_size",
+        "0.3",
+        "--random_state",
+        "42",
+        "--stratify",
+        "genre"
+    ],
+    "state": "running",
+    "program": "/Users/kei/Documents/Data_Science/ML_DevOps_Engineer/3_Modeling_Workflow/lesson5_training_validation_and_experiment_tracking/genre_classification/segregate/run.py",
+    "codePath": "segregate/run.py",
+    "git": {
+        "remote": "https://github.com/kayfuku/genre_classification.git",
+        "commit": "549ec132943dfa3d3821d801116b5a7b6c57c4ce"
+    },
+    "email": "kifinewera@gmail.com",
+    "root": "/Users/kei/Documents/Data_Science/ML_DevOps_Engineer/3_Modeling_Workflow/lesson5_training_validation_and_experiment_tracking/genre_classification",
+    "host": "MacBook-Pro-10.local",
+    "username": "kei",
+    "executable": "/Users/kei/anaconda3/envs/mlflow-b536c99cab3f07bfeb0a1ad9e153575c07cd087e/bin/python"
+}
